@@ -28,7 +28,7 @@ export default {
      
       const queryParams = {
         api_key: '3a857f85c270c76928309334dc033755',
-        query: 'results'
+        query: 'arma'
       };
 
       axios.get(apiUrl,
@@ -60,5 +60,7 @@ export default {
 
 //STYLE
 <style scoped lang="scss">
+@use '../src/assets/style/generic' as *;
+
 
 </style>

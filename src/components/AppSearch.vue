@@ -18,11 +18,14 @@ export default {
 
 <template>
 
-    <input type="text" name="" id="">
+    <input v-model="store.searchMovies" type="text" name="" id="">
     <button>CERCA</button>
   
 </template>
 
-<style scoped lang="scss"> </style>
+<style scoped lang="scss"> 
+@use '../assets/style/generic' as *;
+
+</style>
 
 

@@ -18,12 +18,43 @@ export default {
 
 <template>
     
-    <ul>
-        <li>1</li>
-    </ul>
+    <!--TITOLO-->
+
+    <section class="container">
+
+        <div class="d-flex gap-3 justify-content-evenly">
+            <ul>
+                <h3>Film</h3>
+                <li v-for="film in store.films"> {{ film.title }}</li>
+            </ul>
+
+            <!--TITOLO ORIGINALE-->
+            <ul>
+                <h3>TITOLO ORIGINALE</h3>
+                <li v-for="film in store.films"> {{ film.original_title }}</li>
+            </ul>
+
+            <!--LINGUA-->
+            <ul>
+                <h3>LINGUA</h3>
+                <li v-for="film in store.films"> {{ film.original_language }}</li>
+            </ul>
+
+            <!--VOTO-->
+            <ul>
+                <h3>VOTO</h3>
+                <li v-for="film in store.films"> {{ film.vote_average }}</li>
+            </ul>
+        </div>
+    
+    </section>
   
 </template>
 
-<style scoped lang="scss"> </style>
+<style scoped lang="scss">
+@use '../assets/style/generic' as *;
+
+
+</style>
 
 
