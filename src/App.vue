@@ -22,20 +22,22 @@ export default {
   
   // METHODS
   methods: {  
+    //funzione collegata con $emit a AppSearch (button)
     getMoviesFromApi() {  
+      //URL search movie 
       let apiUrl = 'https://api.themoviedb.org/3/search/movie';
-      
-     
+      //api key e query con scelta utente
       const queryParams = {
         api_key: '3a857f85c270c76928309334dc033755',
-        query: 'arma'
+        query: store.userSearchMovies
       };
-
+      
+      //chiamata axios con parametri query params
       axios.get(apiUrl,
       {params: queryParams}
     )
+    //risultato chiamata pushato in store.films
       .then((response) => {  
-       
         store.films = response.data.results
         
       });
@@ -44,7 +46,6 @@ export default {
   
   // MOUNTED
   mounted() {
-    this.getMoviesFromApi();
   }
 };
 </script>
@@ -53,7 +54,7 @@ export default {
 //TEMPLATE
 <template>
     <AppHeader></AppHeader>
-    <AppSearch></AppSearch>
+    <AppSearch  @searchFilm="getMoviesFromApi"></AppSearch>
     <ListMovies></ListMovies>
 </template>
 

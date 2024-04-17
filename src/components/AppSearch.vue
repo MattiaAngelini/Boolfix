@@ -18,8 +18,8 @@ export default {
 
 <template>
 
-    <input v-model="store.searchMovies" type="text" name="" id="">
-    <button>CERCA</button>
+    <input v-model="store.userSearchMovies" type="text" name="" id="">
+    <button @click="$emit('searchFilm')">CERCA</button>
   
 </template>
 
