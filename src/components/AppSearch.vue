@@ -13,14 +13,15 @@ export default {
     },
 }
 
-
 </script>
 
 <template>
 
-    <input v-model="store.userSearchMovies" type="text" name="" id="">
-    <button @click="$emit('searchFilm')">CERCA</button>
-  
+    <label>
+        <input v-model="store.userSearchMovies" type="text" name="" id="">
+        <button @click="$emit('searchFilm')">CERCA</button>
+    </label>
+
 </template>
 
 <style scoped lang="scss"> 
