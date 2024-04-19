@@ -1,22 +1,37 @@
 <script>
-
-import { store } from '../store.js'
-
-export default {
-    name: 'ListMovie',
- 
-
-    data() {
-    return {
-        store,
-        
-    };
-    },
-}
-
-
+    import { store } from '../store.js'
+    
+    export default {
+        name: 'ListMovie',
+        props: {
+            cardInfo: Object
+        },
+        data() {
+            return {
+                store,
+                supportedFlags: [
+                    'it',
+                    'en',
+                    'fr'
+                ],
+                
+                default_flag:'../src/assets/img/default.jpg'
+            }
+        },
+        methods: {
+            getFlagUrl(language) {
+                return new URL(`../assets/img/${language}.jpg`, import.meta.url).href; 
+            },
+            getLanguageFlagUrl(language) {
+                if (this.supportedFlags.includes(language)) {
+                    return this.getFlagUrl(language);
+                } else {
+                    return this.default_flag
+                }
+            }
+        }
+    }
 </script>
-
 <template>
     
     <!--TITOLO-->
@@ -38,14 +53,24 @@ export default {
             <!--LINGUA-->
             <ul>
                 <h3>LINGUA</h3>
-                <li v-for="film in store.movies"> {{ film.original_language  }}</li>
-            </ul>
+                <template v-for="film in store.movies">                              
+                    <li> <img :src="getLanguageFlagUrl(film.original_language)"></li>            
+                </template>
+           </ul>
 
             <!--VOTO-->
             <ul>
                 <h3>VOTO</h3>
                 <li v-for="film in store.movies"> {{ film.vote_average }}</li>
             </ul>
+            
+            <!-- 
+            <ul>
+                <h3>COPERTINA</h3>
+                <li><img src="../assets/img/en.jpg"> </li>
+            </ul> -->
+
+
         </div>
     
     </section>
@@ -55,5 +80,14 @@ export default {
 <style scoped lang="scss">
 @use '../assets/style/generic' as *;
 
+    li {
+        height: 200px;
+        padding:20px;
+    }
+
+    img {
+        width:50px;
+
+    }
 
 </style>

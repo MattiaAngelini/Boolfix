@@ -5,7 +5,6 @@ import AppHeader from './components/AppHeader.vue';
 import AppSearch from './components/AppSearch.vue';
 import ListMovies from './components/ListMovies.vue';
 
-
 export default {
   // COMPONENTS
   components: {
@@ -51,10 +50,6 @@ export default {
       });
     },
 
-    // getImageUrl(name) {
-    // return new URL(`../assets/img/flag-${name}.jpg`, import.meta.url).href;
-    // }ù
-
     getSeriesFromApi() {  
       //URL search movie 
       let apiUrl = 'https://api.themoviedb.org/3/search/tv';
@@ -75,11 +70,39 @@ export default {
       });
     },
 
+
+    // getImagesFromApi(){
+    //   //URL search movie 
+    //    let apiUrl = 'https://api.themoviedb.org/3/movie/{movie_id}/images';
+    //   //api key e query con scelta utente
+    //    const queryParams = {
+    //      movie_id: 'matrix'
+    //      api_key: 
+    //   };
+      
+    //   //chiamata axios con parametri query params
+    //   axios.get(apiUrl,
+    //   {params: queryParams}
+    // )
+    // //risultato chiamata pushato in store.films
+    //   .then((response) => {  
+    //     store.images = response.data
+        
+    //   });
+    // },
+
+
+    // getImageUrl(name,api) {
+    //  return new URL(`https://image.tmdb.org/t/p/w500/${name}${api}`, 
+    //  import.meta.url).href;
+    // },
+
    
   },
   
   // MOUNTED
   mounted() {
+    this.getImagesFromApi()
     
     //
 
