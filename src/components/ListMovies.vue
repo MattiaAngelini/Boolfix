@@ -14,7 +14,6 @@
                     'en',
                     'fr'
                 ],
-                
                 default_flag:'../src/assets/img/default.jpg'
             }
         },
@@ -32,49 +31,38 @@
         }
     }
 </script>
+
 <template>
-    
-    <!--TITOLO-->
-
     <section class="container">
-
         <div class="d-flex gap-3 justify-content-evenly">
             <ul>
                 <h3>Film</h3>
                 <li v-for="film in store.movies"> {{ film.title }}</li>
             </ul>
-
-            <!--TITOLO ORIGINALE-->
+            <!-- TITOLO ORIGINALE -->
             <ul>
                 <h3>TITOLO ORIGINALE</h3>
                 <li v-for="film in store.movies"> {{ film.original_title }}</li>
             </ul>
-
-            <!--LINGUA-->
+            <!-- LINGUA -->
             <ul>
                 <h3>LINGUA</h3>
                 <template v-for="film in store.movies">                              
                     <li> <img :src="getLanguageFlagUrl(film.original_language)"></li>            
                 </template>
            </ul>
-
-            <!--VOTO-->
+            <!-- VOTO -->
             <ul>
                 <h3>VOTO</h3>
                 <li v-for="film in store.movies"> {{ film.vote_average }}</li>
             </ul>
-            
             <!-- 
             <ul>
                 <h3>COPERTINA</h3>
                 <li><img src="../assets/img/en.jpg"> </li>
             </ul> -->
-
-
         </div>
-    
     </section>
-  
 </template>
 
 <style scoped lang="scss">
@@ -87,7 +75,5 @@
 
     img {
         width:50px;
-
     }
-
 </style>
