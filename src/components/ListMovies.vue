@@ -14,7 +14,7 @@
                     'en',
                     'fr'
                 ],
-                default_flag:'../src/assets/img/default.jpg'
+                default_flag:'../src/assets/img/default.jpg',
             }
         },
         methods: {
@@ -27,7 +27,13 @@
                 } else {
                     return this.default_flag
                 }
+            },
+
+            getCoverImageUrl(partialUrl) {
+                return `https://image.tmdb.org/t/p/w342${partialUrl}`;
             }
+
+
         }
     }
 </script>
@@ -56,11 +62,13 @@
                 <h3>VOTO</h3>
                 <li v-for="film in store.movies"> {{ film.vote_average }}</li>
             </ul>
-            <!-- 
+            
             <ul>
                 <h3>COPERTINA</h3>
-                <li><img src="../assets/img/en.jpg"> </li>
-            </ul> -->
+                <li  v-for="poster in store.movies" >
+                    <img :src="getCoverImageUrl(poster.poster_path)" > 
+                </li>
+            </ul>
         </div>
     </section>
 </template>

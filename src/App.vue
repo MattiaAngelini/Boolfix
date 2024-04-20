@@ -23,12 +23,11 @@ export default {
   // METHODS
   methods: {  
 
-
     searchFilmsAndSeries() {
       this.getSeriesFromApi();
       this.getMoviesFromApi();  
-      this.getPosterFilmFromApi();
-      this.getPosterSeriesFromApi()
+      this.getPosterFilmUrlFromApi();
+      this.getPosterSeriesUrlFromApi();
     },
     
     
@@ -72,47 +71,8 @@ export default {
       });
     },
 
-    
-    getPosterFilmFromApi() {  
-      //URL search movie 
-      let apiUrl = 'https://api.themoviedb.org/3/search/movie';
-      //api key e query con scelta utente
-      const queryParams = {
-        api_key: '3a857f85c270c76928309334dc033755',
-        query: store.userSearchMovies
-      };
-      
-      //chiamata axios con parametri query params
-      axios.get(apiUrl,
-      {params: queryParams}
-    )
-    //risultato chiamata pushato in store.films
-      .then((response) => {  
-        store.posterMovies = response.data.results.map(result => result.backdrop_path);
-        
-      });
-    },
-
-    
-    getPosterSeriesFromApi() {  
-      //URL search movie 
-      let apiUrl = 'https://api.themoviedb.org/3/search/tv';
-      //api key e query con scelta utente
-      const queryParams = {
-        api_key: '3a857f85c270c76928309334dc033755',
-        query: store.userSearchMovies
-      };
-      
-      //chiamata axios con parametri query params
-      axios.get(apiUrl,
-      {params: queryParams}
-    )
-    //risultato chiamata pushato in store.films
-      .then((response) => {  
-        store.posterSeries =  response.data.results.map(result => result.backdrop_path);
-        
-      });
-    },
+  
+   
 
   },
   
