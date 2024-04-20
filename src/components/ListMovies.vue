@@ -15,12 +15,15 @@
                     'fr'
                 ],
                 default_flag:'../src/assets/img/default.jpg',
+                
             }
         },
         methods: {
+            
             getFlagUrl(language) {
                 return new URL(`../assets/img/${language}.jpg`, import.meta.url).href; 
             },
+
             getLanguageFlagUrl(language) {
                 if (this.supportedFlags.includes(language)) {
                     return this.getFlagUrl(language);
@@ -31,8 +34,12 @@
 
             getCoverImageUrl(partialUrl) {
                 return `https://image.tmdb.org/t/p/w342${partialUrl}`;
-            }
+            },
 
+            convertToFiveStarRating(voto) {           
+            const rating = Math.round(voto / 2);
+            return rating
+            },
 
         }
     }
@@ -60,14 +67,24 @@
             <!-- VOTO -->
             <ul>
                 <h3>VOTO</h3>
-                <li v-for="film in store.movies"> {{ film.vote_average }}</li>
+                
+                <li v-for="film in store.movies">
+                    <template v-for="i in Math.round(convertToFiveStarRating(film.vote_average))">
+                                  <i class="fas fa-star"></i> <!-- Stelle piene -->
+                    </template>
+
+                    <template v-for="i in Math.floor(5 - Math.round(convertToFiveStarRating(film.vote_average)))">
+                                  <i class="far fa-star"></i> <!-- Stelle vuote -->
+                    </template>
+                </li>
+                 
             </ul>
             
             <ul>
                 <h3>COPERTINA</h3>
-                <li  v-for="poster in store.movies" >
-                    <img :src="getCoverImageUrl(poster.poster_path)" > 
-                </li>
+                <li  v-for="poster in store.movies " >
+                    <img :src="getCoverImageUrl(poster.backdrop_path)" > 
+                </li>               
             </ul>
         </div>
     </section>

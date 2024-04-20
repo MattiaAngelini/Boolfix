@@ -26,8 +26,7 @@ export default {
     searchFilmsAndSeries() {
       this.getSeriesFromApi();
       this.getMoviesFromApi();  
-      this.getPosterFilmUrlFromApi();
-      this.getPosterSeriesUrlFromApi();
+    
     },
     
     
@@ -70,9 +69,6 @@ export default {
         
       });
     },
-
-  
-   
 
   },
   
