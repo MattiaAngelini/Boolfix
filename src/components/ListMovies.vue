@@ -33,7 +33,12 @@
             },
 
             getCoverImageUrl(partialUrl) {
-                return `https://image.tmdb.org/t/p/w342${partialUrl}`;
+                if(partialUrl){
+                    return `https://image.tmdb.org/t/p/w342${partialUrl}`;
+                } else {
+                    return '../src/assets/img/default.jpg'
+                }
+                
             },
 
             convertToFiveStarRating(voto) {           
@@ -48,25 +53,29 @@
 <template>
     <section class="container">
         <div class="d-flex gap-3 justify-content-evenly">
+           
+
+            <!--FILM-->
             <ul>
                 <h3>Film</h3>
                 <li v-for="film in store.movies"> {{ film.title }}</li>
             </ul>
+     
             <!-- TITOLO ORIGINALE -->
             <ul>
-                <h3>TITOLO ORIGINALE</h3>
+                <h6>TITOLO ORIGINALE</h6>
                 <li v-for="film in store.movies"> {{ film.original_title }}</li>
             </ul>
             <!-- LINGUA -->
             <ul>
-                <h3>LINGUA</h3>
+                <h6>LINGUA</h6>
                 <template v-for="film in store.movies">                              
                     <li> <img :src="getLanguageFlagUrl(film.original_language)"></li>            
                 </template>
            </ul>
             <!-- VOTO -->
             <ul>
-                <h3>VOTO</h3>
+                <h6>VOTO</h6>
                 
                 <li v-for="film in store.movies">
                     <template v-for="i in Math.round(convertToFiveStarRating(film.vote_average))">
@@ -81,14 +90,27 @@
             </ul>
             
             <ul>
-                <h3>COPERTINA</h3>
+                <h6>COPERTINA</h6>
                 <li  v-for="poster in store.movies " >
                     <img :src="getCoverImageUrl(poster.backdrop_path)" > 
                 </li>               
             </ul>
+
+
         </div>
     </section>
+
+
+    <section class="card">
+
+        
+
+    </section>
+
+
 </template>
+
+
 
 <style scoped lang="scss">
 @use '../assets/style/generic' as *;

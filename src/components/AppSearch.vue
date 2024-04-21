@@ -17,7 +17,7 @@ export default {
 
 <template>
 
-    <label>
+    <label class="p-4">
         <input v-model="store.userSearchMovies" type="text" name="" id="">
         <button @click="$emit('searchFilm')">CERCA</button>
     </label>
