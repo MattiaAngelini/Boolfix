@@ -51,76 +51,93 @@
 </script>
 
 <template>
-    <section class="container">
-        <div class="d-flex gap-3 justify-content-evenly">
-           
+  
 
-            <!--FILM-->
-            <ul>
-                <h3>Film</h3>
-                <li v-for="film in store.movies"> {{ film.title }}</li>
+    <section class="ms-cards">
+
+            <ul>        
+                <li  v-for="film in store.movies " >
+
+                    <img class="ms-card" :src="getCoverImageUrl(film.backdrop_path)" >  
+                        
+                    <section>
+                        <div> TITOLO: {{ film.title }}</div>   
+                            <div>LINGUA: <img class="flag" :src="getLanguageFlagUrl(film.original_language)"></div>     
+                        
+                        <div class="d-flex"> VOTO :                
+                            <div v-for="i in Math.round(convertToFiveStarRating(film.vote_average))">
+                                            <i class="fas fa-star"></i> <!-- Stelle piene -->
+                            </div>
+                            <div v-for="i in Math.floor(5 - Math.round(convertToFiveStarRating(film.vote_average)))">
+                                            <i class="far fa-star"></i> <!-- Stelle vuote -->                
+                            </div>
+                        </div>
+                   </section>  
+
+                </li>     
+                          
             </ul>
-     
-            <!-- TITOLO ORIGINALE -->
-            <ul>
-                <h6>TITOLO ORIGINALE</h6>
-                <li v-for="film in store.movies"> {{ film.original_title }}</li>
-            </ul>
-            <!-- LINGUA -->
-            <ul>
-                <h6>LINGUA</h6>
-                <template v-for="film in store.movies">                              
-                    <li> <img :src="getLanguageFlagUrl(film.original_language)"></li>            
-                </template>
-           </ul>
-            <!-- VOTO -->
-            <ul>
-                <h6>VOTO</h6>
-                
-                <li v-for="film in store.movies">
-                    <template v-for="i in Math.round(convertToFiveStarRating(film.vote_average))">
-                                  <i class="fas fa-star"></i> <!-- Stelle piene -->
-                    </template>
-
-                    <template v-for="i in Math.floor(5 - Math.round(convertToFiveStarRating(film.vote_average)))">
-                                  <i class="far fa-star"></i> <!-- Stelle vuote -->
-                    </template>
-                </li>
-                 
-            </ul>
-            
-            <ul>
-                <h6>COPERTINA</h6>
-                <li  v-for="poster in store.movies " >
-                    <img :src="getCoverImageUrl(poster.backdrop_path)" > 
-                </li>               
-            </ul>
-
-
-        </div>
-    </section>
-
-
-    <section class="card">
-
-        
-
     </section>
 
 
 </template>
 
 
-
 <style scoped lang="scss">
 @use '../assets/style/generic' as *;
 
-    li {
-        height: 200px;
-        padding:20px;
+ 
+
+    .ms-cards{
+
+        ul{ 
+             display: flex;
+             overflow-x: auto;  
+
+                li {
+                    position: relative;
+                    padding: 30px;
+                    line-height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 18px;
+                    font-weight: 700;
+                
+                        section {
+                            display: none;
+                            position: absolute;   
+                            width: 300px;    
+                            height: 300px;   
+                                   
+                        }
+
+                        &:hover section{
+                            display: block;
+                            background-color: rgba(0,0,0,0.8);
+                            color: white;
+                        }
+
+                        
+                }
+                
+        }
+
+        img {
+            width: 300px;
+            height: 300px;
+            
+        }
+
+        .flag {
+            width: 60px;
+            height: 30px;
+        }
+
+      
+      
+
     }
 
-    img {
-        width:50px;
-    }
+
 </style>
