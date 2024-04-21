@@ -22,14 +22,14 @@ export default {
   
   // METHODS
   methods: {  
-
+    
+    //FUNZIONE CHE INCORPORA LE 2 CHIAMATE
     searchFilmsAndSeries() {
       this.getSeriesFromApi();
       this.getMoviesFromApi();  
-    
     },
     
-    
+    //CHIAMATE API PER FILM
     getMoviesFromApi() {  
       //URL search movie 
       let apiUrl = 'https://api.themoviedb.org/3/search/movie';
@@ -49,7 +49,8 @@ export default {
         
       });
     },
-
+    
+    //CHIAMATA API PER SERIES
     getSeriesFromApi() {  
       //URL search movie 
       let apiUrl = 'https://api.themoviedb.org/3/search/tv';
@@ -92,6 +93,8 @@ export default {
 //STYLE
 <style scoped lang="scss">
 @use '../src/assets/style/generic' as *;
+
+
 
 
 </style>

@@ -18,7 +18,9 @@ export default {
 <template>
 
     <label class="p-4">
+        <!--VARIABILE SCELTA UTENTE SALVATA IN STORE-->
         <input v-model="store.userSearchMovies" type="text" name="" id="">
+        <!--BUTTON CON EMIT COLLEGATO AD APP VUE DOVE HO FUNZIONI-->
         <button @click="$emit('searchFilm')">CERCA</button>
     </label>
 
